@@ -1,5 +1,9 @@
 Revision history for Perl extension Array::Heap2.
 
+1.0   Thu Mar  3 17:59:22 CET 2005
+	- change of contact address.
+        - mature enough for 1.0.
+
 0.02  Tue Oct  7 22:41:30 CEST 2003
 	- changed name to Array::Heap2.
 

@@ -31,7 +31,7 @@ All of the following functions are being exported by default.
 package Array::Heap2;
 
 BEGIN {
-   $VERSION = 0.02;
+   $VERSION = "1.0";
 
    require XSLoader;
    XSLoader::load Array::Heap2, $VERSION;
@@ -110,8 +110,8 @@ This module works not work with tied or magical arrays or array elements.
 
 =head1 AUTHOR
 
- Marc Lehmann <pcg@goof.com>
- http://www.goof.com/pcg/marc/
+ Marc Lehmann <schmorp@schmorp.de>
+ http://home.schmorp.de/
 
 =cut
 
