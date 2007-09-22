@@ -12,6 +12,15 @@ cmp_nv (SV *a, SV *b, SV *data)
 }
 
 static int
+cmp_sv (SV *a, SV *b, SV *data)
+{
+  if (SvROK (a) && SvTYPE (SvRV (a)) == SVt_PVAV) a = *av_fetch ((AV *)SvRV (a), 0, 1);
+  if (SvROK (b) && SvTYPE (SvRV (b)) == SVt_PVAV) b = *av_fetch ((AV *)SvRV (b), 0, 1);
+
+  return sv_cmp(a, b) > 0;
+}
+
+static int
 cmp_custom (SV *a, SV *b, SV *data)
 {
   SV *old_a, *old_b;
@@ -156,6 +165,13 @@ make_heap (heap)
         make_heap (array (heap), cmp_nv, 0);
 
 void
+make_heap_lex (heap)
+	SV *	heap
+        PROTOTYPE: \@
+        CODE:
+        make_heap (array (heap), cmp_sv, 0);
+
+void
 make_heap_cmp (cmp, heap)
 	SV *	cmp
 	SV *	heap
@@ -173,6 +189,15 @@ push_heap (heap, ...)
           push_heap (array (heap), cmp_nv, 0, ST(i));
 
 void
+push_heap_lex (heap, ...)
+	SV *	heap
+        PROTOTYPE: \@@
+        CODE:
+        int i;
+        for (i = 1; i < items; i++)
+          push_heap (array (heap), cmp_sv, 0, ST(i));
+
+void
 push_heap_cmp (cmp, heap, ...)
 	SV *	cmp
 	SV *	heap
@@ -188,6 +213,15 @@ pop_heap (heap)
         PROTOTYPE: \@
         CODE:
         RETVAL = pop_heap (array (heap), cmp_nv, 0);
+        OUTPUT:
+        RETVAL
+
+SV *
+pop_heap_lex (heap)
+	SV *	heap
+        PROTOTYPE: \@
+        CODE:
+        RETVAL = pop_heap (array (heap), cmp_sv, 0);
         OUTPUT:
         RETVAL
 

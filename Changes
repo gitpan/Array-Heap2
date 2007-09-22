@@ -1,5 +1,12 @@
 Revision history for Perl extension Array::Heap2.
 
+TODO: use multicall api to speed up compares.
+
+1.1   Sat Sep 22 15:38:18 CEST 2007
+	- applied patches by thomas drugeon to add
+          _lex variants doing string instead of numeric
+          compares by default.
+
 1.0   Thu Mar  3 17:59:22 CET 2005
 	- change of contact address.
         - mature enough for 1.0.

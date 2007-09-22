@@ -26,17 +26,29 @@ FUNCTIONS
         lowest value "on top" of the heap (corresponding to the first array
         element).
 
+    make_heap_lex @heap (\@)
+        Just like "make_heap", but in string comparison order instead of
+        numerical comparison order.
+
     make_heap_cmp { compare } @heap (&\@)
         Just like "make_heap", but takes a custom comparison function.
 
     push_heap @heap, $element, ... (\@@)
         Adds the given element(s) to the heap.
 
+    push_heap_lex @heap, $element, ... (\@@)
+        Just like "push_heap", but in string comparison order instead of
+        numerical comparison order.
+
     push_heap_cmp { compare } @heap, $element, ... (&\@@)
         Just like "push_heap", but takes a custom comparison function.
 
     pop_heap @heap (\@)
         Removes the topmost (lowest) heap element and repairs the heap.
+
+    pop_heap_lex @heap (\@)
+        Just like "pop_heap", but in string comparison order instead of
+        numerical comparison order.
 
     pop_heap_cmp { compare } @heap (&\@)
         Just like "pop_heap", but takes a custom comparison function.
@@ -46,8 +58,9 @@ FUNCTIONS
     comparison function and one that uses a custom comparison function.
 
     The built-in comparison function can either compare scalar numerical
-    values, or array refs. If the elements to compare are array refs, the
-    first element of the array is used for comparison, i.e.
+    values (string values for *_lex functions), or array refs. If the
+    elements to compare are array refs, the first element of the array is
+    used for comparison, i.e.
 
       1, 4, 6
 
